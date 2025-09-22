@@ -1,0 +1,48 @@
+# Long duration scenario configuration
+# Extended simulation for endurance testing and statistical analysis
+
+# Camera setup - standard configuration
+image_width_px: 1920
+image_height_px: 1080
+vertical_fov_deg: 50.0
+principal_point_px: [960, 540]
+
+# Camera position
+camera_lat_deg: 13.736717
+camera_lon_deg: 100.523186
+camera_alt_m: 1.5
+camera_yaw_deg: 90.0
+camera_pitch_deg: 10.0
+
+# Standard drone parameters
+drone_size_m: 0.25
+num_drones: 2  # Multiple drones for variety
+path_altitude_agl_m: 5.5
+path_span_m: 45.0
+speed_mps: 4.5  # Moderate speed for extended observation
+max_lateral_accel_mps2: 1.3
+
+# Extended duration for endurance testing
+duration_s: 60.0  # 1 minute simulation
+fps: 10.0  # Lower FPS to reduce computational load
+
+# Realistic noise parameters
+pixel_centroid_sigma_px: 1.2
+bbox_size_sigma_px: 2.2
+confidence_noise: 0.06
+miss_rate_small: 0.03
+false_positive_rate: 0.012
+processing_latency_ms_mean: 55.0
+processing_latency_ms_jitter: 22.0
+
+# MQTT settings for long-duration data
+mqtt_host: "localhost"
+mqtt_port: 1883
+mqtt_topic: "sensors/cam01/long_duration_detections"
+mqtt_qos: 0  # Lower QoS for high-volume data
+retain: false
+client_id: "long_duration_simulator"
+
+# Configuration for extended testing
+deterministic_seed: null  # Random behavior for statistical analysis
+offline_mode: false

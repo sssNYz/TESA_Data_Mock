@@ -1,0 +1,49 @@
+# Example configuration for drone detection simulator
+
+# Camera intrinsics - use either focal length method OR FOV method
+image_width_px: 1920
+image_height_px: 1080
+vertical_fov_deg: 50.0  # Alternative: focal_length_mm + sensor_height_mm
+# focal_length_mm: 25.0
+# sensor_height_mm: 5.0
+principal_point_px: [960, 540]  # Optional, defaults to image center
+
+# Camera position and orientation
+camera_lat_deg: 13.736717
+camera_lon_deg: 100.523186
+camera_alt_m: 1.5
+camera_yaw_deg: 90.0  # Heading from north (degrees)
+camera_pitch_deg: 10.0  # Tilt angle (degrees)
+
+# Drone simulation parameters
+drone_size_m: 0.25
+num_drones: 2
+path_altitude_agl_m: 5.5
+path_span_m: 40.0
+speed_mps: 5.0
+max_lateral_accel_mps2: 1.5
+
+# Simulation timing
+duration_s: 12.0
+fps: 15.0
+
+# Noise and realism parameters
+pixel_centroid_sigma_px: 1.0
+bbox_size_sigma_px: 2.0
+confidence_noise: 0.05
+miss_rate_small: 0.03
+false_positive_rate: 0.01
+processing_latency_ms_mean: 50.0
+processing_latency_ms_jitter: 20.0
+
+# MQTT settings
+mqtt_host: "localhost"
+mqtt_port: 1883
+mqtt_topic: "sensors/cam01/detections"
+mqtt_qos: 0
+retain: false
+client_id: "drone_simulator_01"
+
+# Testing options
+deterministic_seed: 42  # For reproducible results
+offline_mode: false  # Set to true to print JSON instead of MQTT

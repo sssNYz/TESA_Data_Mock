@@ -1,0 +1,48 @@
+# Noisy environment scenario configuration
+# Simulates challenging detection conditions with high noise and interference
+
+# Camera setup - realistic field conditions
+image_width_px: 1920
+image_height_px: 1080
+vertical_fov_deg: 55.0
+principal_point_px: [960, 540]
+
+# Camera position - challenging angle
+camera_lat_deg: 13.736717
+camera_lon_deg: 100.523186
+camera_alt_m: 1.2  # Lower mounting height
+camera_yaw_deg: 85.0  # Slightly off-axis
+camera_pitch_deg: 12.0  # More aggressive tilt
+
+# Challenging drone parameters
+drone_size_m: 0.2  # Smaller drone (harder to detect)
+num_drones: 2
+path_altitude_agl_m: 8.0  # Higher altitude (smaller apparent size)
+path_span_m: 50.0
+speed_mps: 6.0
+max_lateral_accel_mps2: 1.8
+
+# Standard timing
+duration_s: 15.0
+fps: 12.0  # Lower frame rate simulating processing constraints
+
+# High noise parameters for challenging conditions
+pixel_centroid_sigma_px: 2.5  # High pixel noise
+bbox_size_sigma_px: 4.0  # Significant bounding box uncertainty
+confidence_noise: 0.12  # High confidence variation
+miss_rate_small: 0.08  # Higher miss rate for small/distant objects
+false_positive_rate: 0.03  # More false positives
+processing_latency_ms_mean: 80.0  # Higher processing latency
+processing_latency_ms_jitter: 40.0  # High jitter
+
+# MQTT settings for noisy environment
+mqtt_host: "localhost"
+mqtt_port: 1883
+mqtt_topic: "sensors/cam01/noisy_detections"
+mqtt_qos: 1  # Reliable delivery despite noise
+retain: false
+client_id: "noisy_env_simulator"
+
+# Testing configuration for challenging conditions
+deterministic_seed: 456
+offline_mode: false

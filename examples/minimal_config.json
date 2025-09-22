@@ -1,0 +1,22 @@
+{
+  "image_width_px": 1280,
+  "image_height_px": 720,
+  "vertical_fov_deg": 45.0,
+  
+  "camera_lat_deg": 13.736717,
+  "camera_lon_deg": 100.523186,
+  "camera_alt_m": 1.5,
+  "camera_yaw_deg": 90.0,
+  "camera_pitch_deg": 10.0,
+  
+  "num_drones": 1,
+  "duration_s": 5.0,
+  "fps": 15.0,
+  
+  "mqtt_host": "localhost",
+  "mqtt_port": 1883,
+  "mqtt_topic": "sensors/cam01/minimal_detections",
+  
+  "deterministic_seed": 42,
+  "offline_mode": true
+}
