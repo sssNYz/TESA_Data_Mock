@@ -76,7 +76,7 @@ class MQTTPublisher:
                 client_id = f"drone_sim_{int(time.time())}"
             
             try:
-                self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id=client_id)
+                self.client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, client_id=client_id)
                 
                 # Set up callbacks
                 self.client.on_connect = self._on_connect
@@ -92,7 +92,7 @@ class MQTTPublisher:
             except Exception as e:
                 raise MQTTError(f"Failed to create MQTT client: {e}", error_code="CLIENT_SETUP_ERROR")
     
-    def _on_connect(self, client, userdata, flags, rc, properties=None):
+    def _on_connect(self, client, userdata, flags, rc):
         """Callback for when the client receives a CONNACK response from the server."""
         with self.connection_lock:
             if rc == 0:
@@ -113,7 +113,7 @@ class MQTTPublisher:
                 error_msg = error_messages.get(rc, f"Unknown error code {rc}")
                 logger.error(f"Failed to connect to MQTT broker: {error_msg}")
     
-    def _on_disconnect(self, client, userdata, rc, properties=None):
+    def _on_disconnect(self, client, userdata, rc):
         """Callback for when the client disconnects from the broker."""
         with self.connection_lock:
             self.connected = False
@@ -126,7 +126,7 @@ class MQTTPublisher:
             else:
                 logger.info("Disconnected from MQTT broker")
     
-    def _on_publish(self, client, userdata, mid, properties=None):
+    def _on_publish(self, client, userdata, mid):
         """Callback for when a message is published."""
         self.stats['publish_successes'] += 1
         logger.debug(f"Message published with message ID: {mid}")
