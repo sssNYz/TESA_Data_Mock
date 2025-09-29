@@ -50,7 +50,7 @@ class SimulatorConfig:
     processing_latency_ms_jitter: float = 20.0
     
     # MQTT settings
-    mqtt_host: str = "192.168.1.104"
+    mqtt_host: str = "192.168.1.103"
     mqtt_port: int = 1883
     mqtt_topic: str = "sensors/cam01/detections"
     mqtt_qos: int = 0
